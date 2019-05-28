@@ -5,6 +5,6 @@ class Comparison
 {
     public function desc()
     {
-        echo "Compariso成功";
+        echo "87dennis";
     }
 }
