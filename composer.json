@@ -15,7 +15,7 @@
     },
     "autoload": {
         "psr-4": {
-          "Cannon\\": "src/Cannon/Comparison"
+          "Cannon\\Comparison\\": "src/Cannon/Comparison"
         }
     }
 }
