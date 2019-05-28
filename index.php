@@ -6,6 +6,7 @@ use Cannon\Comparison\Comparison;
 $x=new Comparison();
 
 $arr=[
-'pp','weg'=>'wegew','weg','wegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegwegweg'
+	["pp"=>123],
+	["pewfgewgp"=>123]
 ];
 $x->show($arr);

@@ -49,7 +49,6 @@ class Comparison
                 printf("|%-{$length}s|%-{$length}.{$length}s|\n",$n,$item);
             }
         }else{
-        	print_r($data);
         	$keys = array_keys($this->arr_key($data));
         	foreach ($data as $k => $item) {
         		foreach ($keys as $key) {
