@@ -45,8 +45,9 @@ class Comparison
             $keys=['(index)','value'];
             $len = count($keys) * $length +count($keys)+1;
             $header($keys,$len,$length);
-            foreach ($data as $n => $item) {
-                printf("|%-{$length}s|%-{$length}.{$length}s|\n",$n,$item);
+            foreach ($data as $n => $value) {
+                if(is_array($value)) $value =json_encode($value);
+                printf("|%-{$length}s|%-{$length}.{$length}s|\n",$n,$value);
             }
         }else{
         	$keys = array_keys($this->arr_key($data));
