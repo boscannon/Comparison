@@ -1,0 +1,21 @@
+{
+    "name": "cannon/comparison",
+    "description": "try make a package",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "cannon",
+            "email": "p12576999@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.0"
+    },
+    "autoload": {
+        "psr-4": {
+          "Cannon\\": "src/Cannon/Comparison"
+        }
+    }
+}
