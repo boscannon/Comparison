@@ -6,7 +6,7 @@ use Cannon\Comparison\Comparison;
 $x=new Comparison();
 
 $arr=[
-	["pp"=>1e3453],
-	["pewfgewgp"=>123]
+	'pp'=>["pp"=>3453,234,32525,235],
+	["pewfgewgp"=>123,2324]
 ];
 $x->show($arr);

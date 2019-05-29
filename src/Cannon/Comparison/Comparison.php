@@ -29,9 +29,24 @@ class Comparison
     	}
     	return $tmp;
 	}
-    public function show($data,$length=30)
+    public function show($data,$control=[])
     {	
-        $header =function($keys,$len,$length){
+        $allow =[
+            'length'=>['default'=>30,'type'=>'int'],
+            'index' =>['default'=>true,'type'=>'bool'],
+        ];
+        foreach ($allow as $key => $value) {
+            ${$key} = $control[$key] ?? $value['default'];
+            settype(${$key},$value['type']);
+        }
+        $sort_flag=SORT_LOCALE_STRING;
+
+        $len_cal=function() use ($length,$index,&$keys){
+            if($index)array_unshift($keys,'(index)');
+            $len = count($keys) * $length +count($keys)+1;
+            return $len;
+        };
+        $header =function($keys) use (&$len,$length){
             printf("%'-{$len}s\n",'-');
             printf("|");
             foreach ($keys as $key => $value) {
@@ -40,14 +55,27 @@ class Comparison
             printf("\n");
             printf("%'-{$len}s\n",'-');
         };
+        $index_show = function($n) use ($length){
+            if($index) printf("%-{$length}s|",$n);
+        };
+        $content =function($value) use ($length){
+            if(is_array($value)) $value =json_encode($value);
+            printf("%-{$length}.{$length}s|",$value);
+        }; 
+
         $arrayLevel=$this->arrayLevel($data);
-        if($arrayLevel ==1){
-            $keys=['(index)','value'];
-            $len = count($keys) * $length +count($keys)+1;
-            $header($keys,$len,$length);
+        if($arrayLevel ==0){
+            echo $data;
+        }elseif($arrayLevel ==1){
+            $keys=['value'];
+            $len  =$len_cal();
+
+            $header($keys);
             foreach ($data as $n => $value) {
-                if(is_array($value)) $value =json_encode($value);
-                printf("|%-{$length}s|%-{$length}.{$length}s|\n",$n,$value);
+                printf("|");
+                $index_show($n);
+                $content($value);
+                printf("\n");
             }
         }else{
         	$keys = array_keys($this->arr_key($data));
@@ -57,24 +85,21 @@ class Comparison
         				$data[$k][$key]=null;
         			}
         		}
-        	}
+        	}        	
+        	sort($keys,$sort_flag);
+            $len  =$len_cal();
 
-        	$keys[]='(index)';
-        	sort($keys);
-
-        	$len = count($keys) * $length +count($keys)+1;
-
-            $header($keys,$len,$length);
+            $header($keys);
         	foreach ($data as $n => $item) {
         		$first =true;
-        		ksort($item);
+        		ksort($item,$sort_flag);
         		foreach ($item as $key => $value) {
     	    		if($first){
-    	    			printf("|%-{$length}s|",$n);
+                        printf("|");
+    	    			$index_show($n);
     	    			$first=false;
     	    		}
-    	    		if(is_array($value)) $value =json_encode($value);
-    	    		printf("%-{$length}.{$length}s|",$value);
+                    $content($value);
         		}
         		printf("\n");
         	}
