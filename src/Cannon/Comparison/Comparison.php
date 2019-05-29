@@ -55,7 +55,7 @@ class Comparison
             printf("\n");
             printf("%'-{$len}s\n",'-');
         };
-        $index_show = function($n) use ($length){
+        $index_show = function($n) use ($length,$index){
             if($index) printf("%-{$length}s|",$n);
         };
         $content =function($value) use ($length){

@@ -9,4 +9,4 @@ $arr=[
 	'pp'=>["pp"=>3453,234,'ewge',235],
 	["pewfgewgp"=>123,'23egwe4']
 ];
-$x->show($arr,['length'=>30,'index'=>true]);
+$x->show($arr);
