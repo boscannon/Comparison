@@ -67,6 +67,7 @@ class Comparison
         if($arrayLevel ==0){
             echo $data;
         }elseif($arrayLevel ==1){
+            $data =json_decode(json_encode($data),1);
             $keys=['value'];
             $len  =$len_cal();
 
@@ -78,6 +79,7 @@ class Comparison
                 printf("\n");
             }
         }else{
+            $data =json_decode(json_encode($data),1);
         	$keys = array_keys($this->arr_key($data));
         	foreach ($data as $k => $item) {
         		foreach ($keys as $key) {
