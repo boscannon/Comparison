@@ -36,7 +36,7 @@ class Comparison
             'index' =>['default'=>true,'type'=>'bool'],
         ];
         foreach ($allow as $key => $value) {
-            ${$key} = $control[$key] ?? $value['default'];
+            ${$key} = isset($control[$key]) ?$control[$key]:$value['default'];
             settype(${$key},$value['type']);
         }
         $sort_flag=SORT_LOCALE_STRING;
