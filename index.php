@@ -7,6 +7,6 @@ $x=new Comparison();
 
 $arr=[
 	'pp'=>["pp"=>3453,234,'ewge',235],
-	["pewfgewgp"=>123,'2324']
+	["pewfgewgp"=>123,'23egwe4']
 ];
 $x->show($arr,['length'=>30,'index'=>true]);
